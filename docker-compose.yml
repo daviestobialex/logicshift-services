@@ -1,0 +1,51 @@
+version: '3.4'
+
+volumes:
+  logic-services:
+
+services:
+  multi-bills-pay:
+    image: daviestobialex/multi-bills-pay:1.0.0
+    container_name: multi-bills-pay
+    # #build: shovel-paystack
+    # depends_on:
+    volumes:
+      - /home/Dapo/logs/multi-bills-pay:/logs
+    ports:
+      - "7785:7785"
+    restart: always
+  nip-inward:
+    image: daviestobialex/nip-inward
+    container_name: nip-inward
+    # #build: shovel-paystack
+    # depends_on:
+    volumes:
+      - /home/Dapo/logs/nip-inward:/logs
+    ports:
+      - "8010:8010"
+    restart: always
+  nip-outward:
+    image: daviestobialex/nip-outward
+    container_name: nip-outward
+    # #build: shovel-paystack
+    # depends_on:
+    volumes:
+      - /home/Dapo/logs/nip-outward:/logs
+    ports:
+      - "8189:8189"
+    restart: always
+  dozzle:
+    container_name: dozzle-shovel
+    image: amir20/dozzle:latest
+    restart: always
+    environment:
+       DOZZLE_USERNAME: admin
+       DOZZLE_PASSWORD: dozzle
+       DOZZLE_KEY: sHeeft1!ter
+       DOZZLE_NO_ANALYTICS: 'true'
+    networks:
+      - monypot-net
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 9912:8080
