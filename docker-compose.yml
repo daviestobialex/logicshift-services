@@ -7,12 +7,14 @@ services:
   multi-bills-pay:
     image: daviestobialex/multi-bills-pay:1.0.0
     container_name: multi-bills-pay
+    networks:
+      - host
     # #build: shovel-paystack
     # depends_on:
     volumes:
       - /home/Dapo/logs/multi-bills-pay:/logs
     ports:
-      - "7785:7785"
+      - "7770:7770"
     restart: always
   nip-inward:
     image: daviestobialex/nip-inward
