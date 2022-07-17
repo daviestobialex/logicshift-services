@@ -46,7 +46,7 @@ services:
     volumes:
       - /home/Dapo/logs/sms:/logs
     ports:
-      - "8010:8010"
+      - "7777:7777"
     restart: always
   dozzle:
     container_name: dozzle-shovel
