@@ -3,12 +3,14 @@ version: '3.4'
 volumes:
   logic-services:
 
+networks: 
+  host:
+    external: true
+
 services:
   multi-bills-pay:
     image: daviestobialex/multi-bills-pay:1.0.0
     container_name: multi-bills-pay
-    networks:
-      - host
     # #build: shovel-paystack
     # depends_on:
     volumes:
