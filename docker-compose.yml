@@ -39,7 +39,7 @@ services:
       - "8189:8189"
     restart: always
   sms:
-    image: daviestobialex/sms:0.0.1
+    image: daviestobialex/sms-service:0.0.1
     container_name: sms
     # #build: shovel-paystack
     # depends_on:
