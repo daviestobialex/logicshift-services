@@ -29,7 +29,7 @@ services:
       - "8010:8010"
     restart: always
   nip-outward:
-    image: daviestobialex/nip-outward
+    image: daviestobialex/nip-outward:1.0.0
     container_name: nip-outward
     # #build: shovel-paystack
     # depends_on:
@@ -37,6 +37,16 @@ services:
       - /home/Dapo/logs/nip-outward:/logs
     ports:
       - "8189:8189"
+    restart: always
+  sms:
+    image: daviestobialex/sms:0.0.1
+    container_name: sms
+    # #build: shovel-paystack
+    # depends_on:
+    volumes:
+      - /home/Dapo/logs/sms:/logs
+    ports:
+      - "8010:8010"
     restart: always
   dozzle:
     container_name: dozzle-shovel
